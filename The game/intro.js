@@ -182,7 +182,7 @@ if (hp <= 0) {
   noLoop();
 }
 
-if (highscore >= 1000) {
+if (highscore >= 2000) {
   textAlign(CENTER);
   textSize(100);
   fill(255, 0, 0);
