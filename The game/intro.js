@@ -4,9 +4,11 @@ function Intro() {
   textSize(100);
   textAlign(CENTER);
   text("welcome", width / 2, height / 2 - 100);
-  textSize(60)
-  text('press n for tutorial or esc to skip', width / 2, height / 2 + 100);
-  text('press b to take a break/read the backstory', width / 2, height / 2 + 200);
+  textSize(50)
+  text('Press n for tutorial or space to skip', width / 2, height / 2 + 100);
+  text('Press b to take a break/read the backstory', width / 2, height / 2 + 200);
+  textSize(35);
+  text('Tip: press T to toggle fullscreen!', width / 2, height / 2 + 400);
 
 }
 
@@ -15,15 +17,15 @@ function Backstory() {
   fill(0, 255, 255);
   textSize(70);
   textAlign(CENTER);
-  text('press b to continue', width / 2, height / 2 - 400);
-  textSize(40)
+  text('Press b to continue', width / 2, height / 2 - 300);
+  textSize(30)
   text('2 days ago the planet Ilias launched a large trading caravan heading towards the closest planet.', width / 2, height / 2 - 150);
   text('Unfortunately on the way back the caravan ran into trubbles in a asteroid-storm,', width / 2, height / 2 - 75);
   text('and all ships were lost. The asteroid-storm is now approaching Ilias', width / 2, height / 2);
   text('It is up to you to defend your home!', width / 2, height / 2 + 75);
   text('Oh and Ilias is running low on supplies so try to pick up the gray packages from the caravan :)', width / 2, height / 2 + 150);
-  textSize(100)
-  text("Good Luck!", width / 2, height - 200);
+  textSize(70)
+  text("Good Luck!", width / 2, height - 50);
 
 }
 
@@ -188,7 +190,7 @@ if (highscore >= 1000) {
   noLoop();
 }
 
-hp -= 0.0005
+hp -= 0.001
 
 
 }

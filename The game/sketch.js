@@ -34,7 +34,7 @@ function draw() {
     Game();
   }
   spawn = 0.005 + (highscore * 0.00001);
-  sSpawn = 0.0008 + (highscore * 0.000005);
+  sSpawn = 0.0001 + (highscore * 0.000005);
 }
 
 
@@ -67,10 +67,18 @@ function keyPressed() {
     intro += 1;
   }
 
-  if (keyCode == 27) {
+  if (keyCode == 32 && intro < 10) {
     intro += 10;
   }
   if (keyCode == 66) {
     backstory *= -1;
   }
+  if (keyCode == 84) {
+    var fs = fullscreen();
+    fullscreen(!fs);
+  }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
