@@ -23,7 +23,7 @@ function Backstory() {
   text('Unfortunately on the way back the caravan ran into trubbles in a asteroid-storm,', width / 2, height / 2 - 75);
   text('and all ships were lost. The asteroid-storm is now approaching Ilias', width / 2, height / 2);
   text('It is up to you to defend your home!', width / 2, height / 2 + 75);
-  text('Oh and Ilias is running low on supplies so try to pick up the gray packages from the caravan :)', width / 2, height / 2 + 150);
+  text('Oh and Ilias is running low on supplies so try to pick up the gray packages from the caravan ;)', width / 2, height / 2 + 150);
   textSize(70)
   text("Good Luck!", width / 2, height - 50);
 
