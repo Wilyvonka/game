@@ -32,6 +32,7 @@ function Supply() {
 
   this.gainLife = function() {
     if (this.d <= this.r + planet.r) {
+      effects[3].play();
       if (hp > 4) {
         hp = 5
       } else {
