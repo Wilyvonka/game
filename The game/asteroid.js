@@ -1,7 +1,7 @@
 function Asteroid() {
   this.r = random(25, 50);
   this.pos = createVector(random(width), 0 - this.r);
-  this.vel = createVector(random(-1, 1), random(0.4, 2));
+  this.vel = createVector(random(-0.7, 0.7), random(0.8, 2));
   this.acc = createVector();
   this.total = floor(random(8, 14));
   this.offset = [];
@@ -14,7 +14,7 @@ function Asteroid() {
     this.pos.add(this.vel);
     this.acc.mult(0);
     this.d = dist(this.pos.x, this.pos.y, planet.x, planet.y);
-    
+
   }
   this.render = function() {
     push();
@@ -46,12 +46,15 @@ function Asteroid() {
 
   this.looseLife = function() {
     if (this.d <= this.r + planet.r) {
+      effects[2].play();
       if (hp < 1) {
         hp = 0
       } else {
-      hp = hp - 1
+        hp = hp - 1
       }
     }
+
+
   };
 
 
