@@ -30,7 +30,7 @@ function Backstory() {
   textAlign(CENTER, TOP);
   text('Music', width - width / 7, height - 60);
   text('Sound effects', width - width / 7, height - 30);
-  text('(Use firefox if sound effects are not muted completely)', width / 2, height-300);
+  text('(Use firefox if sound effects are not muted completely)', width / 2, height-30);
 
 }
 
