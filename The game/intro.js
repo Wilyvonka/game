@@ -25,7 +25,7 @@ function Backstory() {
   text('It is up to you to defend your home!', width / 2, height / 2 + 75);
   text('Oh and Ilias is running low on supplies so try to pick up the gray packages from the caravan :)', width / 2, height / 2 + 150);
   textSize(70)
-  text("Good Luck!", width / 2, height - height/9);
+  text("Good Luck!", width / 2, height - height/7);
   textSize(20);
   textAlign(CENTER, TOP);
   text('Music', width - width / 7, height - 60);
