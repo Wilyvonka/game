@@ -62,13 +62,12 @@ function draw() {
       sounds.splice(s, 1)
     }
   }
-
-
   if (sounds[s] === undefined) {
     s = floor(random(0, 3));
   }
-
-  sounds[s].setVolume(musicVolume);
+  if (sounds[s] !== undefined && sounds[s].isPlaying() === true) {
+    sounds[s].setVolume(musicVolume);
+  }
   effects[0].setVolume(effectVolume);
   effects[1].setVolume(effectVolume);
   effects[2].setVolume(effectVolume);
@@ -113,8 +112,8 @@ function keyPressed() {
     ship.boosting(true);
   } else if (keyCode == 32) {
     lasers.push(new Laser(ship.pos, ship.heading));
-   // if (effectVolume > 0.1) {
-      effects[0].play();
+    // if (effectVolume > 0.1) {
+    effects[0].play();
     //}
   } else if (keyCode == 90 || keyCode == 77) {
     attractors.push(new Attractor(ship.pos, ship.heading));
