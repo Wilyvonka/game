@@ -64,6 +64,13 @@ function loaded() {
 function draw() {
     var effectVolume = effectSlider.value();
     var musicVolume = songSlider.value();
+    sounds[s].setVolume(musicVolume);
+    effects[0].setVolume(effectVolume);
+    effects[1].setVolume(effectVolume);
+    effects[2].setVolume(effectVolume);
+    effects[3].setVolume(effectVolume);
+    effects[4].setVolume(effectVolume);
+
 
     songSlider.position(width - width / 10, height - 60);
     effectSlider.position(width - width / 10, height - 30);
@@ -87,12 +94,6 @@ function draw() {
     }
 
 
-    sounds[s].setVolume(musicVolume);
-    effects[0].setVolume(effectVolume);
-    effects[1].setVolume(effectVolume);
-    effects[2].setVolume(effectVolume);
-    effects[3].setVolume(effectVolume);
-    effects[4].setVolume(effectVolume);
 
     if (highscore >= 2000) {
         gameComplete();
