@@ -16,7 +16,7 @@ function Intro() {
     textSize(100);
     textAlign(CENTER);
     text("Welcome", width / 2, height / 2 - 100);
-    textSize(50)
+    textSize(50);
     text('Press n for tutorial or space to skip', width / 2, height / 2 + 100);
     text('Press b to take a break/read the backstory', width / 2, height / 2 + 200);
     textSize(35);
@@ -30,12 +30,12 @@ function Backstory() {
     textSize(70);
     textAlign(CENTER);
     text('Press b to continue', width / 2, height / 2 - 300);
-    textSize(30)
+    textSize(30);
     text('2 days ago the planet Ilias launched a large trading caravan heading towards the closest planet.', width / 2, height / 2 - 150);
     text('Unfortunately on the way back the caravan ran into trouble in a asteroid-storm,', width / 2, height / 2 - 75);
     text('and all ships were lost. The asteroid-storm is now approaching Ilias', width / 2, height / 2);
     text('It is up to you to defend your home!', width / 2, height / 2 + 75);
-    textSize(70)
+    textSize(70);
     text("Good Luck!", width / 2, height - height / 10);
     textSize(20);
     textAlign(CENTER, TOP);
@@ -52,7 +52,7 @@ function Tutorial() {
     textSize(70);
     textAlign(CENTER);
     text("Controls:", width / 2, 200);
-    textSize(60)
+    textSize(60);
     text('Movement: arrows/WASD', width / 2, 400);
     text('Repulsion Beam: space bar', width / 2, 475);
     text('Attraction Beam: Z/M', width / 2, 550);
@@ -70,14 +70,14 @@ function Game() {
 
     if (ssSpawn >= 1) {
         supplies.push(new Supply());
-        ssSpawn = 0
+        ssSpawn = 0;
     }
-    for (var o = supplies.length - 1; o >= 0; o--) {
-        supplies[o].render();
-        supplies[o].update();
-        supplies[o].gainLife();
-        if (supplies[o].done()) {
-            supplies.splice(o, 1);
+    for (var i = supplies.length - 1; i >= 0; i--) {
+        supplies[i].render();
+        supplies[i].update();
+        supplies[i].gainLife();
+        if (supplies[i].done()) {
+            supplies.splice(i, 1);
         }
     }
     if (random(0, 1) < spawn) {
@@ -92,18 +92,17 @@ function Game() {
             asteroids.splice(i, 1);
         }
     }
-    for (var j = lasers.length - 1; j >= 0; j--) {
+    for (var i = lasers.length - 1; i >= 0; i--) {
 
 
         for (var k = asteroids.length - 1; k >= 0; k--) {
 
-            if (lasers[j].hits(asteroids[k]) && t < 1) {
-                asteroids[k].acc.add(lasers[j].vel);
+            if (lasers[i].hits(asteroids[k]) && t < 1) {
+                asteroids[k].acc.add(lasers[i].vel);
                 asteroids[k].acc.mult(0.02);
-                // laser.splice(j, 1);
                 t += 1;
 
-            } else if (!lasers[j].hits(asteroids[k])) {
+            } else if (!lasers[i].hits(asteroids[k])) {
                 t = 0;
             }
         }
@@ -111,63 +110,62 @@ function Game() {
 
 
 
-    for (var h = lasers.length - 1; h >= 0; h--) {
+    for (var i = lasers.length - 1; i >= 0; i--) {
 
 
-        for (var p = supplies.length - 1; p >= 0; p--) {
+        for (var j = supplies.length - 1; j >= 0; j--) {
 
-            if (lasers[h].hitsSup(supplies[p]) && t < 1) {
-                supplies[p].acc.add(lasers[h].vel);
-                supplies[p].acc.mult(0.02);
-                // laser.splice(j, 1);
+            if (lasers[i].hitsSup(supplies[j]) && t < 1) {
+                supplies[j].acc.add(lasers[i].vel);
+                supplies[j].acc.mult(0.02);
                 t += 1;
 
-            } else if (!lasers[h].hitsSup(supplies[p])) {
+            } else if (!lasers[i].hitsSup(supplies[j])) {
                 t = 0;
             }
         }
 
 
-        lasers[h].render();
-        lasers[h].update();
+        lasers[i].render();
+        lasers[i].update();
 
-        if (lasers[h].done()) {
-            lasers.splice(h, 1);
+        if (lasers[i].done()) {
+            lasers.splice(i, 1);
         }
     }
 
 
-    for (var a = 0; a < attractors.length; a++) {
-        for (var u = 0; u < supplies.length; u++) {
+    for (var i = 0; i < attractors.length; i++) {
+        for (var j = 0; j < supplies.length; j++) {
 
-            if (attractors[a].hitsSup(supplies[u]) && t < 1) {
-                supplies[u].acc.sub(attractors[a].vel);
-                supplies[u].acc.mult(0.02);
+            if (attractors[i].hitsSup(supplies[j]) && t < 1) {
+                supplies[j].acc.sub(attractors[i].vel);
+                supplies[j].acc.mult(0.02);
                 t += 1;
 
-            } else if (!attractors[a].hitsSup(supplies[u])) {
+            } else if (!attractors[i].hitsSup(supplies[j])) {
                 t = 0;
             }
         }
     }
 
-    for (var y = 0; y < attractors.length; y++) {
+    for (var i = 0; i < attractors.length; i++) {
 
-        for (var e = asteroids.length - 1; e >= 0; e--) {
+        for (var j = asteroids.length - 1; j >= 0; j--) {
 
-            if (attractors[y].hits(asteroids[e]) && t < 1) {
-                asteroids[e].acc.sub(attractors[y].vel);
-                asteroids[e].acc.mult(0.02);
+            if (attractors[i].hits(asteroids[j]) && t < 1) {
+                asteroids[j].acc.sub(attractors[i].vel);
+                asteroids[j].acc.mult(0.02);
                 t += 1;
-            } else if (!attractors[y].hits(asteroids[e])) {
+            } else if (!attractors[i].hits(asteroids[j])) {
                 t = 0;
             }
         }
-        attractors[y].render();
-        attractors[y].update();
+        attractors[i].render();
+        attractors[i].update();
 
-        if (attractors[y].done()) {
-            attractors.splice(y, 1);
+        if (attractors[i].done()) {
+            attractors.splice(i, 1);
         }
     }
 
@@ -220,5 +218,4 @@ function Game() {
     } else {
         ssSpawn = 0
     }
-
 }
