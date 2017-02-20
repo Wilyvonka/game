@@ -38,7 +38,6 @@ function preload() {
     effects[2] = (loadSound('sound/fail.mp3'));
     effects[3] = (loadSound('sound/success.mp3'));
     effects[4] = (loadSound('sound/firework.mp3'));
-
 }
 
 function setup() {
@@ -49,50 +48,39 @@ function setup() {
     sounds[0] = (loadSound('sound/Fade.mp3', loaded));
     sounds[1] = loadSound('sound/BlueFlame.mp3', loaded);
     sounds[2] = loadSound('sound/SeaOfEnvy.mp3', loaded);
-
     songSlider = createSlider(0, 1, 0.5, 0.001);
     effectSlider = createSlider(0, 1, 0.5, 0.001);
-
-
 }
 
 function loaded() {
     load += 1
-
 }
 
 function draw() {
     var effectVolume = effectSlider.value();
     var musicVolume = songSlider.value();
-
     songSlider.position(width - width / 10, height - 60);
     effectSlider.position(width - width / 10, height - 30);
     if (sounds[s].isPlaying() === false && load >= 3) {
         sounds[s].play();
     }
+
     if (sounds[s].currentTime() >= sounds[s].duration() - 1 && load >= 3) {
         s += 1
         console.log('finished')
     }
 
-    //    if (sounds[s].currentTime() >= sounds[s].duration() - 1 && s === 2) {
-    //        shuffle(sounds, true)
-    //        s = 0
-    //    }
     if (s === 3) {
         shuffle(sounds, true)
         s = 0
+        sounds[s].pause();
         sounds[s].play();
-
     }
 
-
     sounds[s].setVolume(musicVolume);
-    effects[0].setVolume(effectVolume);
-    effects[1].setVolume(effectVolume);
-    effects[2].setVolume(effectVolume);
-    effects[3].setVolume(effectVolume);
-    effects[4].setVolume(effectVolume);
+    for (var i = 0; i < effects.length; i++) {
+        effects[i].setVolume(effectVolume);
+    }
 
     if (highscore >= 2000) {
         gameComplete();
@@ -109,11 +97,7 @@ function draw() {
     }
     spawn = 0.005 + (highscore * 0.00001);
     sSpawn = 0.0001 + (highscore * 0.000005);
-
-
-
 }
-
 
 function keyReleased() {
     if (keyCode == RIGHT_ARROW || keyCode == LEFT_ARROW || keyCode == 65 || keyCode == 68) {
@@ -124,9 +108,6 @@ function keyReleased() {
     }
 
 }
-
-
-
 
 function keyPressed() {
     if (keyCode == RIGHT_ARROW || keyCode == 68) {
@@ -161,7 +142,6 @@ function keyPressed() {
     }
 
 }
-
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);

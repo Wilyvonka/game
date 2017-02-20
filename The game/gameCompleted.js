@@ -1,6 +1,6 @@
 /*plans:
 1   get the fireworks to fire from Ilias
-2   firework sounds when the firework "pop"
+2   make sure the supplies don´t escape too easily
 */
 
 
