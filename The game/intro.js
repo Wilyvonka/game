@@ -194,8 +194,6 @@ function Game() {
     textSize(20);
     text([highscore], width - 200, 50);
     text("highscore:", width - 300, 50)
-        //text(hp, 10, 50);
-
     if (hp <= 0) {
         textAlign(CENTER);
         textSize(100);

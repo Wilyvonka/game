@@ -1,21 +1,20 @@
 /*plans:
-1   get the fireworks to fire from Ilias
-2   make sure the supplies don´t escape too easily
+1   restart button
+2   credit Mich
+3   convert all constants to window size variables
+4   more action in the beginning
+5   faster ship and lasers
+6   music to effects ratio
+7   resizing
 */
 
-
-
 gameComplete = function () {
-
-
-    //stroke(255, 0, 0);
-    // strokeWeight(5);
     if (frameCount % 130 === 0) {
         background(0);
     } else {
         background(0, 50);
     }
-    if (random(0, 1) < 0.03) {
+    if (random(0, 1) < 0.025) {
         fireworks.push(new Firework());
     }
 
@@ -34,8 +33,10 @@ gameComplete = function () {
 
 
 
-    //ellipse(egg.x,egg.y,egg.r)
+    //ellipse(egg.x, egg.y, egg.r)
     d = dist(mouseX, mouseY, egg.x, egg.y)
+    planet.render()
+
 }
 
 
@@ -49,13 +50,16 @@ function mousePressed() {
 
 
 
-function Particle(x, y, firework) {
+function Particle(x, y, firework, angle) {
     this.pos = createVector(x, y);
     this.firework = firework;
     this.lifespan = 255;
-
+    this.angle = angle;
     if (this.firework) {
-        this.vel = createVector(0, random(-11, -7));
+        this.vel = createVector(0, random(-14, -10));
+        this.vel.rotate(this.angle);
+        this.gravity = createVector(0, 0.1)
+        this.gravity.rotate(this.angle);
     } else {
         this.vel = p5.Vector.random2D();
         this.vel.mult(random(2.5, 8));
@@ -82,16 +86,14 @@ function Particle(x, y, firework) {
     }
 
 
-
     this.show = function () {
-
         if (!this.firework) {
             stroke(random(255), random(255), random(255), this.lifespan)
             strokeWeight(3)
         } else {
             push();
-            stroke(255, 0, 0)
-            strokeWeight(4)
+            stroke(255, 0, 0);
+            strokeWeight(5);
         }
         point(this.pos.x, this.pos.y);
         pop();
@@ -99,9 +101,8 @@ function Particle(x, y, firework) {
 }
 
 function Firework() {
-
-    this.firework = new Particle(random(width), height, true);
-    this.exploded = false
+    this.firework = new Particle(planet.x, planet.y, true, random(PI / 9.5, -PI / 9.5));
+    this.exploded = false;
     this.particles = [];
 
     this.done = function () {
@@ -116,7 +117,7 @@ function Firework() {
 
     this.update = function () {
         if (!this.exploded) {
-            this.firework.applyForce(gravity);
+            this.firework.applyForce(this.firework.gravity);
             this.firework.update();
             if (this.firework.vel.y >= 0) {
                 this.exploded = true
@@ -127,11 +128,10 @@ function Firework() {
         }
 
         for (var i = this.particles.length - 1; i >= 0; i--) {
-            this.particles[i].applyForce(gravity)
+            this.particles[i].applyForce(this.firework.gravity);
             this.particles[i].update();
             if (this.particles[i].done()) {
                 this.particles.splice(i, 1);
-
             }
         }
     }
@@ -152,4 +152,5 @@ function Firework() {
             this.particles[i].show();
         }
     }
+
 }
