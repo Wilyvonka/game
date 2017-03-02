@@ -28,8 +28,8 @@ var egg = {
 }
 
 var fireworks = [];
-var gravity;
 var d = 0
+var target;
 
 
 function preload() {
@@ -41,7 +41,6 @@ function preload() {
 }
 
 function setup() {
-    gravity = createVector(0, 0.1)
     createCanvas(windowWidth, windowHeight);
     ship = new Ship();
     planet = new Planet();
