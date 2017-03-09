@@ -30,6 +30,8 @@ var egg = {
 var fireworks = [];
 var d = 0
 var target;
+var button;
+var rStart = -1
 
 
 function preload() {
@@ -49,6 +51,8 @@ function setup() {
     sounds[2] = loadSound('sound/SeaOfEnvy.mp3', loaded);
     songSlider = createSlider(0, 1, 0.5, 0.001);
     effectSlider = createSlider(0, 1, 0.5, 0.001);
+    button = createButton('Restart');
+    button.mousePressed(replay);
 }
 
 function loaded() {
@@ -60,6 +64,9 @@ function draw() {
     var musicVolume = songSlider.value();
     songSlider.position(width - width / 10, height - 60);
     effectSlider.position(width - width / 10, height - 30);
+    button.size(54, 18);
+    button.style("font-size", "8pt");
+    button.position(width - width / 8, height - 45);
     if (sounds[s].isPlaying() === false && load >= 3) {
         sounds[s].play();
     }
@@ -144,4 +151,21 @@ function keyPressed() {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+}
+
+function replay() {
+    ship.pos.x = width / 2;
+    ship.pos.y = height / 2;
+    ship.vel.x = 0;
+    ship.vel.y = 0;
+    ship.heading = 0;
+    asteroids = [];
+    supplies = [];
+    fireworks = [];
+    lasers = [];
+    attractors = []; 
+    highscore = 0;
+    hp = 5;
+    loop();
+    noStroke();
 }

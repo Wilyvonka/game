@@ -5,7 +5,7 @@
 4   more action in the beginning
 5   faster ship and lasers
 6   music to effects ratio
-7   resizing
+7   resizing?
 */
 
 gameComplete = function () {
@@ -36,7 +36,11 @@ gameComplete = function () {
     //ellipse(egg.x, egg.y, egg.r)
     d = dist(mouseX, mouseY, egg.x, egg.y)
     planet.render()
-
+    var buttonX = 100;
+    var buttonY = 50;
+    button.position(width / 2 - buttonX / 2, height / 2 + height / 7.5 - buttonY / 2);
+    button.size(buttonX, buttonY);
+    button.style("font-size", "20pt");
 }
 
 
@@ -58,7 +62,7 @@ function Particle(x, y, firework, angle) {
     if (this.firework) {
         this.vel = createVector(0, random(-14, -10));
         this.vel.rotate(this.angle);
-        this.gravity = createVector(0, 0.1)
+        this.gravity = createVector(0, 0.1);
         this.gravity.rotate(this.angle);
     } else {
         this.vel = p5.Vector.random2D();
@@ -88,8 +92,8 @@ function Particle(x, y, firework, angle) {
 
     this.show = function () {
         if (!this.firework) {
-            stroke(random(255), random(255), random(255), this.lifespan)
-            strokeWeight(3)
+            stroke(random(255), random(255), random(255), this.lifespan);
+            strokeWeight(3);
         } else {
             push();
             stroke(255, 0, 0);
