@@ -195,11 +195,17 @@ function Game() {
     text([highscore], width - 200, 50);
     text("highscore:", width - 300, 50)
     if (hp <= 0) {
+        var buttonX = 100;
+        var buttonY = 50;
         textAlign(CENTER);
         textSize(100);
         fill(255, 0, 0);
         text("Game Over!", width / 2, height / 2);
         noLoop();
+        button.position(width / 2 - buttonX / 2, height / 2 + height / 7.5 - buttonY / 2);
+        button.size(buttonX, buttonY);
+        button.style("font-size", "20pt");
+
     }
 
     if (highscore >= 2000) {
