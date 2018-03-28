@@ -8,7 +8,7 @@ var highscore = 0;
 var hp = 5;
 var hpBar;
 var planet;
-var intro = 0;
+var intro = 10;
 var backstory = -1;
 var spawn = 0;
 var sSpawn = 0;
