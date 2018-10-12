@@ -32,7 +32,6 @@ let target;
 //p5.disableFriendlyErrors = true;
 
 function setup() {
-	highscore = 2015;
 	//fullscreen(true)
 	//let canvas = createCanvas(windowWidth, windowHeight);
 	//let canvas = createCanvas(1200, 675)
